@@ -60,9 +60,14 @@ postSignInR = do
     case maybeUser of
         Nothing ->
             return "Error"
-        _ -> do
-            setCookie $ def { setCookieName = "login", setCookieValue = S8.pack $ T.unpack $ login }
-            return "OK"
+        Just (Entity _ users) ->
+            if (userPassword users) == password then do
+                setCookie $ def { setCookieName = "login", setCookieValue = S8.pack $ T.unpack $ login }
+                return "OK"
+            else
+                return "Error"
+
+
 
 postHomeR :: Handler Html
 postHomeR = undefined
