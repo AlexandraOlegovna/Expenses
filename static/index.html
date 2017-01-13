@@ -54,25 +54,27 @@ $login.keyup(e => {
 })
 
 $( "#register" ).click( e => {
-e.preventDefault();
-$.post( "/register", { login: $login.val(), password: $("#inputPassword" ).val()})
-    .done(function( msg ) {
-        if (msg == "OK")
-            document.location.pathname = "/show";
-        else
-            ;//TODO
-  })
+    e.preventDefault();
+    $.post( "/register", { login: $login.val(), password: $("#inputPassword" ).val()})
+        .done(function( msg ) {
+            if (msg == "OK")
+                document.location.pathname = "/show";
+            else
+                ;//TODO
+      })
 })
 
 $( "#signin" ).click( e => {
-e.preventDefault();
-$.post( "/signin", { login: $login.val(), password: $("#inputPassword" ).val()})
-    .done(function( msg ) {
-        if (msg == "OK")
-            document.location.pathname = "/show";
-        else
-            ;//TODO
-  })
+    e.preventDefault();
+    $.post( "/signin", { login: $login.val(), password: $("#inputPassword" ).val()})
+        .done(function( msg ) {
+            if (msg == "OK")
+            {
+                document.location.pathname = "/show";
+            }
+            else
+                ;//TODO
+      })
 })
 
   // construct an HTTP request

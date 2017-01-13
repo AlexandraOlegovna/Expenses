@@ -3,7 +3,7 @@ module Handler.ShowExpenses where
 import Import
 
 getShowExpensesR :: Handler ()
-getShowExpensesR = undefined
+getShowExpensesR = sendFile "text/html" "static/main.html"
 
 
 
