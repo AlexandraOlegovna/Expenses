@@ -45,14 +45,10 @@
     </div> <!-- /container -->
 
 <script>
-
 const $login = $( "#inputEmail" );
-
-
 $login.keyup(e => {
     $login.val( e.target.value.replace(/[^A-Z0-9]/gi, "") );
 })
-
 $( "#register" ).click( e => {
 e.preventDefault();
 $.post( "/register", { login: $login.val(), password: $("#inputPassword" ).val()})
@@ -63,7 +59,6 @@ $.post( "/register", { login: $login.val(), password: $("#inputPassword" ).val()
             ;//TODO
   })
 })
-
 $( "#signin" ).click( e => {
 e.preventDefault();
 $.post( "/signin", { login: $login.val(), password: $("#inputPassword" ).val()})
@@ -74,20 +69,16 @@ $.post( "/signin", { login: $login.val(), password: $("#inputPassword" ).val()})
             ;//TODO
   })
 })
-
   // construct an HTTP request
   // var xhr = new XMLHttpRequest();
   // xhr.open(form.method, form.action, true);
   // xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-
   // send the collected data as JSON
   // xhr.send(JSON.stringify(data));
-
   // xhr.onloadend = function () {
   //   // done
   // };
 // };
-
 </script>
 
   </body>

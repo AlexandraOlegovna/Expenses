@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="tttt.css" rel="stylesheet">
+    <title>Dynamic table example</title>
+</head>
+<body>
+
+<h1>Динамическая таблица.</h1>
+<form method="post" action="">
+    <table class="simple-little-table" cellspacing='0'>
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">operation</th>
+				<th scope="col">theme</th>
+                <th scope="col">item</th>
+                <th scope="col">Дата операции</th>
+                <th scope="col">Добавление/удаление строки</th>
+            </tr>
+        </thead>
+        <tbody id="dynamic">
+            <tr>
+                <td>
+                    <label>
+                        <input type="text" name="text" value="Тут будет">
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <select name="select">
+                            <option value="value-1">+</option>
+                            <option value="value-2">-</option>
+                        </select>
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="text" name="text" value="Укажите область операции">
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="text" name="text" value="Уточтите предмет">
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="date" name="bday" min="2010-12-31" max="2020-12-31">
+                    </label>
+                </td>
+                <td>
+                    <button type="button" class="add">+</button>
+                    <button type="button" class="del">-</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <input name="sub" type="submit" value="SEND" style="margin: 10px">
+</form>
+<hr/>
+<script src="dynamicTable.js"></script>
+<script>
+    new DynamicTable( document.getElementById("dynamic") );
+</script>
+</body>
+</html>
