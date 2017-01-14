@@ -45,10 +45,13 @@
     </div> <!-- /container -->
 
 <script>
+
 const $login = $( "#inputEmail" );
+
 $login.keyup(e => {
     $login.val( e.target.value.replace(/[^A-Z0-9]/gi, "") );
 })
+
 $( "#register" ).click( e => {
     e.preventDefault();
     $.post( "/register", { login: $login.val(), password: $("#inputPassword" ).val()})
@@ -59,6 +62,7 @@ $( "#register" ).click( e => {
                 ;//TODO
       })
 })
+
 $( "#signin" ).click( e => {
     e.preventDefault();
     $.post( "/signin", { login: $login.val(), password: $("#inputPassword" ).val()})
@@ -69,7 +73,7 @@ $( "#signin" ).click( e => {
             }
             else
                 ;//TODO
-      })
+        })
 })
   // construct an HTTP request
   // var xhr = new XMLHttpRequest();

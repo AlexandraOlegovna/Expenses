@@ -15,6 +15,7 @@ import Database.Persist.TH
 import qualified Data.ByteString.Char8 as S8
 import qualified Data.Text as T
 import Web.Cookie
+import Prelude
 
 
 -- This is a handler function for the GET request method on the HomeR
@@ -67,10 +68,22 @@ postSignInR = do
             else
                 return "Error"
 
+postInsertNewR :: Handler Text
+postInsertNewR = do
+    (Just op) <- lookupPostParam "op"
+    (Just theme) <- lookupPostParam "theme"
+    (Just item) <- lookupPostParam "item"
+    (Just cost) <- lookupPostParam "cost"
+    (Just date) <- lookupPostParam "date"
+    (Just login) <- lookupCookie "login"
+    Just (Entity id_user _) <- runDB $ getBy $ UniqueUser login
+    _ <- runDB $ insert $ Expenses id_user op theme item (read $ Import.unpack cost) date
+    -- runDB $ insert $ Expenses id_user "op" "theme" "item" 228 "date"
+    return "OK"
 
 
 postHomeR :: Handler Html
-postHomeR = undefined
+postHomeR = Import.undefined
     -- lp <- requireJsonBody :: Handler LogPass -- get the json body as Foo (assumes FromJSON instance)
     -- getParameters <- reqGetParams <$> getRequest
     -- (Just lgValueMaybe) <- lookupPostParam "login"

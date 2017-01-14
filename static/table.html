@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="tttt.css" rel="stylesheet">
+	<link href="static/tttt.css" rel="stylesheet">
     <title>Dynamic table example</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
 
-<h1>Динамическая таблица.</h1>
+<h1>Dynamic table.</h1>
 <form method="post" action="">
     <table class="simple-little-table" cellspacing='0'>
         <thead>
             <tr>
-                <th scope="col">id</th>
-                <th scope="col">operation</th>
-				<th scope="col">theme</th>
-                <th scope="col">item</th>
-                <th scope="col">Дата операции</th>
-                <th scope="col">Добавление/удаление строки</th>
+                <th scope="col">Operation</th>
+				<th scope="col">Theme</th>
+                <th scope="col">Item</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Date</th>
+                <th scope="col">Add/Delete</th>
             </tr>
         </thead>
-        <tbody id="dynamic">
+        <tbody class="table" id="dynamic">
             <tr>
-                <td>
-                    <label>
-                        <input type="text" name="text" value="Тут будет">
-                    </label>
-                </td>
                 <td>
                     <label>
                         <select name="select">
@@ -36,12 +32,17 @@
                 </td>
                 <td>
                     <label>
-                        <input type="text" name="text" value="Укажите область операции">
+                        <input class= "operation" type="text" name="text" value="">
                     </label>
                 </td>
                 <td>
                     <label>
-                        <input type="text" name="text" value="Уточтите предмет">
+                        <input type="text" name="text" value="">
+                    </label>
+                </td>
+				<td>
+                    <label>
+                        <input type="number" name="text" value="">
                     </label>
                 </td>
                 <td>
@@ -56,12 +57,14 @@
             </tr>
         </tbody>
     </table>
-    <input name="sub" type="submit" value="SEND" style="margin: 10px">
+	<button id="submit">SEND</button>
 </form>
 <hr/>
-<script src="dynamicTable.js"></script>
+<script src="static/dynamicTable.js"></script>
 <script>
     new DynamicTable( document.getElementById("dynamic") );
 </script>
+
+
 </body>
 </html>

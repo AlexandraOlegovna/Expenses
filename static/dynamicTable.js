@@ -43,5 +43,30 @@ var DynamicTable = (function (GLOB) {
             tBody.removeChild(row);
         };
         _correctNames(tBody.rows[0]);
+
+        $( "#submit" ).click( e => {
+            e.preventDefault();
+            for (i = 0; i < tBody.rows.length; i++) {
+                // var x = {op: $("#dynamic:nth-child(" + i + "):nth-child(0)" ).val(),
+                //                     theme: $("#dynamic:nth-child(" + i + "):nth-child(1)" ).val(),
+                //                     item: $("#dynamic:nth-child(" + i + "):nth-child(2)" ).val(),
+                //                     cost: $("#dynamic:nth-child(" + i + "):nth-child(3)" ).val(),
+                //                     date: $("#dynamic:nth-child(" + i + "):nth-child(4)" ).val()}
+                //НЕ РАБОТАЕТ ПОКА ЧТО
+                var x = {op: $("#dynamic" )}
+                $.post( "/insert", x)
+                .done(function( msg ) {
+                    if (msg == "OK")
+                    {
+                        console.log("OK");
+                    }
+                    else
+                        ;//TODO
+
+                })
+
+                }
+            }
+        )
     };
 })(this);

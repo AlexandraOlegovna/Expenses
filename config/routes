@@ -5,5 +5,7 @@
 / HomeR GET POST
 /register RegisterR POST
 /signin SignInR POST
+/showexp PostNewR POST
+/insert InsertNewR POST
 
 /show ShowExpensesR GET POST

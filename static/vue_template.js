@@ -53,31 +53,33 @@ Vue.component('demo-grid', {
 
 // bootstrap the demo
 window.onload = function () {var demo = new Vue({
+    
   el: '#demo',
   data: {
     searchQuery: '',
     gridColumns: ['type', 'theme', 'item', 'cost', 'date'],
     gridData: [
-      { type: '+', theme: 'Shop', item: "none", cost: 100.00, date: '12.08.2016'},
-      { type: '+', theme: 'School', item: "none", cost: 120.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
-      { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'}
+
+    //   { type: '+', theme: 'Shop', item: "none", cost: 100.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'School', item: "none", cost: 120.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'},
+    //   { type: '+', theme: 'Appartment', item: "none", cost: 1000.00, date: '12.08.2016'}
 
 
     ]
