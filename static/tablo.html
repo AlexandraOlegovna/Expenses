@@ -1,0 +1,91 @@
+<body>
+<link href="style.css" rel="stylesheet">
+
+<script>
+function addRow()
+{
+	var d = document;
+	var operation;
+	var theme;
+	var item;
+	var cost;
+	var date;
+	
+    // Считываем значения с формы
+    operation = d.getElementById('operation').value;
+    theme = d.getElementById('theme').value;
+    item = d.getElementById('item').value;
+	cost = d.getElementById('cost').value;
+	date = d.getElementById('date').value;
+
+    // Находим нужную таблицу
+    var tbody = d.getElementById('dynamic').getElementsByTagName('TBODY')[0];
+
+    // Создаем строку таблицы и добавляем ее
+    var row = d.createElement("TR");
+    tbody.appendChild(row);
+
+    // Создаем ячейки в вышесозданной строке
+    // и добавляем тх
+    var td1 = d.createElement("TD");
+    var td2 = d.createElement("TD");
+	var td3 = d.createElement("TD");
+	var td4 = d.createElement("TD");
+    var td5 = d.createElement("TD");
+
+    row.appendChild(td1);
+    row.appendChild(td2);
+	row.appendChild(td3);
+	row.appendChild(td4);
+	row.appendChild(td5);
+
+    // Наполняем ячейки
+    td1.innerHTML = operation;
+    td2.innerHTML = theme;
+	td3.innerHTML = item;
+	td4.innerHTML = cost;
+	td5.innerHTML = date;
+}
+</script>
+
+<form action="" id="add_persons" method="post" onsubmit="addRow();return false;">
+<table id="dynamic" class="dynamic">
+  <thead>
+        <tr>
+            <th scope="col">Operation</th>
+			<th scope="col">Theme</th>
+            <th scope="col">Item</th>
+			<th scope="col">Cost</th>
+            <th scope="col">Дата операции</th>
+        </tr>
+  </thead>
+  <tbody>
+	<tr>
+        <td>
+            <label for="operation">Opration</label>
+            <input type="text" name="operation" id="operation" value="" size="12" tabindex="1" />
+        </td>
+        <td>
+            <label for="theme">Theme</label>
+            <input type="text" name="theme" id="theme" value="" size="12" tabindex="2" />
+        </td>
+        <td>
+            <label for="item">Item</label>
+            <input type="text" name="item" id="item" value="" size="12" tabindex="3" />
+        </td>
+		<td>
+            <label for="cost">Cost</label>
+            <input type="number" name="cost" id="cost" value="" size="12" tabindex="4" />
+        </td>
+		<td>
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" value="" size="12"/>
+        </td>
+	</tr>
+  </tbody>
+</table>
+<label for="subm">Действие</label>
+<input type="submit" name="subm" class="submit" value="Добавить" />  
+</form>
+
+</body>

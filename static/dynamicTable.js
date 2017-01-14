@@ -6,7 +6,7 @@ var DynamicTable = (function (GLOB) {
             return new arguments.callee.apply(arguments);
         }
         //Делегируем прослушку событий элементу tbody
-        tBody.onclick = function(e) {
+        onclick = function(e) {
             var evt = e || GLOB.event,
                 trg = evt.target || evt.srcElement;
             if (trg.className && trg.className.indexOf("add") !== -1) {
