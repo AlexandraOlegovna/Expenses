@@ -17,11 +17,15 @@
                 <th scope="col">Item</th>
                 <th scope="col">Cost</th>
                 <th scope="col">Date</th>
-                <th scope="col">Add/Delete</th>
             </tr>
         </thead>
         <tbody class="table" id="dynamic">
             <tr>
+                <td>
+                    <label>
+                        Hi, Dima
+                    </label>
+                </td>
                 <td>
                     <label>
                         <select name="select">
@@ -47,17 +51,17 @@
                 </td>
                 <td>
                     <label>
-                        <input type="date" name="bday" min="2010-12-31" max="2020-12-31">
+                        <input type="date" name="date" min="2010-12-31" max="2020-12-31">
                     </label>
-                </td>
-                <td>
-                    <button type="button" class="add">+</button>
-                    <button type="button" class="del">-</button>
                 </td>
             </tr>
         </tbody>
     </table>
 	<button id="submit">SEND</button>
+    <td>
+	<button type="submit">submit</button>
+	<button type="button" class="add">+</button>
+	<button type="button" class="del">-</button>
 </form>
 <hr/>
 <script src="static/dynamicTable.js"></script>
