@@ -15,28 +15,26 @@
           },
           data: [
           {
-               /* Шрифт на диаграмме */
-               /* Размер */
+
                indexLabelFontSize: 20,
-               /* Семейство шрифтов */
+
                indexLabelFontFamily: "Monospace",       
-               /* Цвет шрифта */
+
                indexLabelFontColor: "darkgrey", 
-               /* Цвет линий */
+
                indexLabelLineColor: "darkgrey",
-               /* Легенда внутри диаграммы или снаружи */
+
                indexLabelPlacement: "outside",
                type: "pie", // bubble      
                showInLegend: true,
-               /* что выводить на всплывающей подсказке
-               В данном случает - значение, значение в процентах */
+
                toolTipContent: "{y} - <strong>#percent%</strong>",
                dataPoints: [
-                    {  y: 10000, legendText:"Дом", indexLabel: "Home" },
-                    {  y: 15000, legendText:"Развлечения", indexLabel: "Relaxation" },
-                    {  y: 30000, legendText:"Путешевствия",exploded: true, indexLabel: "Travel" },
-                    {  y: 5000, legendText:"Машина" , indexLabel: "Car"},
-                    {  y: 15000, legendText:"Еда", indexLabel: "Eat" },
+                    {  y: 10000, legendText:"Home", indexLabel: "Home" },
+                    {  y: 15000, legendText:"Relax", indexLabel: "Relaxation" },
+                    {  y: 30000, legendText:"Travel",exploded: true, indexLabel: "Travel" },
+                    {  y: 5000, legendText:"Car" , indexLabel: "Car"},
+                    {  y: 15000, legendText:"Eat", indexLabel: "Eat" },
                ]
           }
           ]
@@ -48,8 +46,30 @@
 	</head>
 <body>
 <link href="tttt.css" rel="stylesheet">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+<link href="static/tttt.css" rel="stylesheet">
 <script>
-function addRow()
+$(function() {
+  	$.post("/showexp", {})
+	.done(function( data ) {
+		// console.log(data[0]);
+		var d = document;
+		for (i = 0; i < data.length; i++) {
+			d.getElementById('operation').value = data[i].ololo;
+			d.getElementById('theme').value = data[i].theme;
+			d.getElementById('item').value = data[i].item;
+			d.getElementById('cost').value = data[i].cost;
+			d.getElementById('date').value = data[i].date;
+			addRow(false);
+		}
+	})
+});
+
+function addRow(flag)
 {
 	var d = document;
 	var operation;
@@ -57,26 +77,21 @@ function addRow()
 	var item;
 	var cost;
 	var date;
-    // Считываем значения с формы
-    operation = d.getElementById('operation').value;
-    theme = d.getElementById('theme').value;
-    item = d.getElementById('item').value;
+	
+	operation = d.getElementById('operation').value;
+	theme = d.getElementById('theme').value;
+	item = d.getElementById('item').value;
 	cost = d.getElementById('cost').value;
 	date = d.getElementById('date').value;
-	
-    // Находим нужную таблицу
-    var tbody = d.getElementById('dynamic').getElementsByTagName('TBODY')[0];
-	
-    // Создаем строку таблицы и добавляем ее
-    var row = d.createElement("TR");
-    tbody.appendChild(row);
-	
 
-    // Создаем ячейки в вышесозданной строке
-    // и добавляем тх
-	if (theme ==  '' || item == '' || cost ==  '' || date == '')
-	{ 
-	alert('Вы ввели не все данные');
+	var tbody = d.getElementById('dynamic').getElementsByTagName('TBODY')[0];
+
+	var row = d.createElement("TR");
+	tbody.appendChild(row);
+
+	if (operation == '' || theme ==  '' || item == '' || cost ==  '' || date == '')
+	{
+		alert('Empty fields are unavailable');
 	}
 	else {
     var td1 = d.createElement("TD");
@@ -86,20 +101,28 @@ function addRow()
     var td5 = d.createElement("TD");
 	var td6 = d.createElement("TD");
 
-    row.appendChild(td1);
-    row.appendChild(td2);
+	row.appendChild(td1);
+	row.appendChild(td2);
 	row.appendChild(td3);
 	row.appendChild(td4);
 	row.appendChild(td5);
 	row.appendChild(td6);
 
-    // Наполняем ячейки
-    td1.innerHTML = operation;
-    td2.innerHTML = theme;
+	td1.innerHTML = operation;
+	td2.innerHTML = theme;
 	td3.innerHTML = item;
 	td4.innerHTML = cost;
 	td5.innerHTML = date;
 	td6.innerHTML = "<button onclick=deleteRow(this);>remove</button>";
+
+	if (flag)
+		$.post( "/insert", {op: $("#operation" ).val(), theme: $("#theme" ).val(), item: $("#item" ).val(), cost: $("#cost" ).val(), date: $("#date").val()})
+
+	d.getElementById('operation').value = "";
+	d.getElementById('theme').value = "";
+	d.getElementById('item').value = "";
+	d.getElementById('cost').value = "";
+	d.getElementById('date').value = "";
 	}
 }
 </script>
@@ -112,8 +135,8 @@ var i=r.parentNode.parentNode.rowIndex;
 document.getElementById('dynamic').deleteRow(i);
 }
 </script>
-<form action="" id="add_persons" method="post" onsubmit="addRow(); return false;">
- <div class="text-center">
+<form action="" id="add_persons" method="post" onsubmit="addRow(true); return false;">
+<div class="text-center">
         <button name="subm" class="submit">Add element</button>
 </div>
 <table id="dynamic" class="dynamic">
@@ -123,7 +146,7 @@ document.getElementById('dynamic').deleteRow(i);
 			<th scope="col">Theme</th>
             <th scope="col">Item</th>
 			<th scope="col">Cost</th>
-            <th scope="col">Date operation</th>
+            <th scope="col">Date</th>
 			<th scope="col">Remove rows</th>
         </tr>
   </thead>
@@ -142,7 +165,7 @@ document.getElementById('dynamic').deleteRow(i);
             <input type="text" name="item" id="item" value="" size="12" tabindex="3" />
         </td>
 		<td>
-            <input type="number" name="cost" id="cost" value="" size="12" tabindex="4" />
+            <input type="number" name="cost" id="cost" value="" size="6" tabindex="4" />
         </td>
 		<td>
             <input type="date" name="date" id="date" value="" size="12"/>
@@ -151,7 +174,7 @@ document.getElementById('dynamic').deleteRow(i);
 		</td>
 	</tr>
   </tbody>
-</table> 
+</table>
 </form>
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 </body>

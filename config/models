@@ -1,11 +1,11 @@
-User
+User json
     login Text
     password Text
     UniqueUser login
     deriving Show
-Expenses
+Expenses json
     userId UserId
-    type Text
+    ololo Text
     theme Text
     item Text
     cost Int

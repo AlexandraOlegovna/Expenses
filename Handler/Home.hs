@@ -77,7 +77,7 @@ postInsertNewR = do
     (Just date) <- lookupPostParam "date"
     (Just login) <- lookupCookie "login"
     Just (Entity id_user _) <- runDB $ getBy $ UniqueUser login
-    _ <- runDB $ insert $ Expenses id_user op theme item (read $ Import.unpack cost) date
+    _ <- runDB $ insert $ Expenses id_user op theme item ((read $ Import.unpack cost) :: Int) date
     -- runDB $ insert $ Expenses id_user "op" "theme" "item" 228 "date"
     return "OK"
 
