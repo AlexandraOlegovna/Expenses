@@ -3,11 +3,26 @@
 </head>
 
 <body>
-<link href="static/style.css" rel="stylesheet">
+<link href="static/tttt.css" rel="stylesheet">
 
 <script>
+$(function() {
+  	$.post("/showexp", {})
+	.done(function( data ) {
+		// console.log(data[0]);
+		var d = document;
+		for (i = 0; i < data.length; i++) {
+			d.getElementById('operation').value = data[i].ololo;
+			d.getElementById('theme').value = data[i].theme;
+			d.getElementById('item').value = data[i].item;
+			d.getElementById('cost').value = data[i].cost;
+			d.getElementById('date').value = data[i].date;
+			addRow(false);
+		}
+	})
+});
 //Добавить параметры у функции и доп. параметр на добавление записи в базу
-function addRow()
+function addRow(flag)
 {
 	var d = document;
 	var operation;
@@ -32,8 +47,13 @@ function addRow()
 
 	// Создаем ячейки в вышесозданной строке
 	// и добавляем тх
-	var td1 = d.createElement("TD");
-	var td2 = d.createElement("TD");
+	if (operation == '' || theme ==  '' || item == '' || cost ==  '' || date == '')
+	{
+		alert('Empty fields are unavailable');
+	}
+	else {
+    var td1 = d.createElement("TD");
+    var td2 = d.createElement("TD");
 	var td3 = d.createElement("TD");
 	var td4 = d.createElement("TD");
 	var td5 = d.createElement("TD");
@@ -51,13 +71,23 @@ function addRow()
 	td4.innerHTML = cost;
 	td5.innerHTML = date;
 
-	$.post( "/insert", {op: $("#operation" ).val(), theme: $("#theme" ).val(), item: $("#item" ).val(), cost: $("#cost" ).val(), date: $("#date").val()})
+	if (flag)
+		$.post( "/insert", {op: $("#operation" ).val(), theme: $("#theme" ).val(), item: $("#item" ).val(), cost: $("#cost" ).val(), date: $("#date").val()})
 
+	d.getElementById('operation').value = "";
+	d.getElementById('theme').value = "";
+	d.getElementById('item').value = "";
+	d.getElementById('cost').value = "";
+	d.getElementById('date').value = "";
+
+	}
 }
 </script>
 
-<form action="" id="add_persons" method="post" onsubmit="addRow();return false;">
-<input type="submit" name="subm" class="submit" value="Add expense" />
+<form action="" id="add_persons" method="post" onsubmit="addRow(true); return false;">
+<div class="text-center">
+        <button name="subm" class="submit">Add element</button>
+</div>
 <table id="dynamic" class="dynamic">
   <thead>
         <tr>
@@ -71,7 +101,10 @@ function addRow()
   <tbody>
 	<tr>
         <td>
-            <input type="text" name="operation" id="operation" value="" size="5" tabindex="1" />
+			<select name="operation" id="operation">
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                        </select>
         </td>
         <td>
             <input type="text" name="theme" id="theme" value="" size="12" tabindex="2" />
@@ -90,4 +123,7 @@ function addRow()
 </table>
 </form>
 
+</body>
+</table>
+</form>
 </body>

@@ -1,23 +1,3 @@
-/* NULL */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-margin:0;
-padding:0;
-border:0;
-outline:0;
-font-weight:inherit;
-font-style:inherit;
-font-size:100%;
-font-family:inherit;
-vertical-align:baseline;
-background:transparent;
-}
 /*Do not forget to describe the styles for:focus!*/
 :focus {
 outline:0;
@@ -32,6 +12,7 @@ list-style:none;
 table {
 border-collapse:collapse;
 border-spacing:0;
+margin: auto;
 }
 caption, th, td {
 text-align:center;
@@ -51,20 +32,19 @@ body {
  margin:20px;
 }
 
-.simple-little-table {
+.dynamic {
 	font-family:Arial, Helvetica, sans-serif;
 	color:#666;
 	font-size:14px;
 	text-shadow: 1px 1px 0px #fff;
 	background:#eaebec;
-	margin:20px;
 	border:#ccc 1px solid;
 	border-collapse:separate;
 	border-radius:3px;
     box-shadow: 0 1px 2px #d1d1d1;
 }
 
-.simple-little-table th {
+.dynamic th {
 	font-weight:bold;
 	padding:21px 25px 22px 25px;
 	border-top:1px solid #fafafa;
@@ -72,60 +52,64 @@ body {
 
 	background: #ededed;
 }
-.simple-little-table th:first-child{
+.dynamic th:first-child{
 	text-align: left;
 	padding-left:20px;
 }
-.simple-little-table tr:first-child th:first-child{
+.dynamic tr:first-child th:first-child{
 	border-top-left-radius:3px;
 }
-.simple-little-table tr:first-child th:last-child{
+.dynamic tr:first-child th:last-child{
 	border-top-right-radius:3px;
 }
-.simple-little-table tr{
+.dynamic tr{
 	text-align: center;
 	padding-left:20px;
 }
-.simple-little-table tr td:first-child{
+.dynamic tr td:first-child{
 	text-align: left;
 	padding-left:20px;
 	border-left: 0;
 }
-.simple-little-table tr td {
+.dynamic tr td {
 	padding:18px;
 	border-top: 1px solid #ffffff;
 	border-bottom:1px solid #e0e0e0;
 	border-left: 1px solid #e0e0e0;
 	background: #fafafa;
 }
-.simple-little-table tr:nth-child(even) td{
+.dynamic tr:nth-child(even) td{
 	background: #f6f6f6;
 }
-.simple-little-table tr:last-child td{
+.dynamic tr:last-child td{
 	border-bottom:0;
 }
-.simple-little-table tr:last-child td:first-child{
+.dynamic tr:last-child td:first-child{
 	border-bottom-left-radius:3px;
 }
-.simple-little-table tr:last-child td:last-child{
+.dynamic tr:last-child td:last-child{
 	border-bottom-right-radius:3px;
 }
-.simple-little-table tr:hover td{
+.dynamic tr:hover td{
 	background: #f2f2f2;
 }
 
-.simple-little-table a:link {
+.dynamic a:link {
 	color: #666;
 	font-weight: bold;
 	text-decoration:none;
 }
-.simple-little-table a:visited {
+.dynamic a:visited {
 	color: #999999;
 	font-weight:bold;
 	text-decoration:none;
 }
-.simple-little-table a:active,
-.simple-little-table a:hover {
+.dynamic a:active,
+.dynamic a:hover {
 	color: #bd5a35;
 	text-decoration:underline;
+}
+
+.text-center{
+	margin-left: 19.3%;
 }
