@@ -1,6 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<script type="text/javascript">
+	window.onload = function () {
+     var chart = new CanvasJS.Chart("chartContainer",
+     {
+          title:{
+               text: "Expenses"
+          },
+                animationEnabled: true,
+          legend:{
+               verticalAlign: "bottom",
+               horizontalAlign: "center"
+          },
+          data: [
+          {
+               /* Шрифт на диаграмме */
+               /* Размер */
+               indexLabelFontSize: 20,
+               /* Семейство шрифтов */
+               indexLabelFontFamily: "Monospace",       
+               /* Цвет шрифта */
+               indexLabelFontColor: "darkgrey", 
+               /* Цвет линий */
+               indexLabelLineColor: "darkgrey",
+               /* Легенда внутри диаграммы или снаружи */
+               indexLabelPlacement: "outside",
+               type: "pie", // bubble      
+               showInLegend: true,
+               /* что выводить на всплывающей подсказке
+               В данном случает - значение, значение в процентах */
+               toolTipContent: "{y} - <strong>#percent%</strong>",
+               dataPoints: [
+                    {  y: 10000, legendText:"Дом", indexLabel: "Home" },
+                    {  y: 15000, legendText:"Развлечения", indexLabel: "Relaxation" },
+                    {  y: 30000, legendText:"Путешевствия",exploded: true, indexLabel: "Travel" },
+                    {  y: 5000, legendText:"Машина" , indexLabel: "Car"},
+                    {  y: 15000, legendText:"Еда", indexLabel: "Eat" },
+               ]
+          }
+          ]
+     });
+     chart.render();
+}
+</script>
+<script type="text/javascript" src="canvasjs.min.js"></script>
+	</head>
 <body>
 <link href="tttt.css" rel="stylesheet">
-
 <script>
 function addRow()
 {
@@ -10,20 +57,20 @@ function addRow()
 	var item;
 	var cost;
 	var date;
-	
     // Считываем значения с формы
     operation = d.getElementById('operation').value;
     theme = d.getElementById('theme').value;
     item = d.getElementById('item').value;
 	cost = d.getElementById('cost').value;
 	date = d.getElementById('date').value;
-
+	
     // Находим нужную таблицу
     var tbody = d.getElementById('dynamic').getElementsByTagName('TBODY')[0];
 	
     // Создаем строку таблицы и добавляем ее
     var row = d.createElement("TR");
     tbody.appendChild(row);
+	
 
     // Создаем ячейки в вышесозданной строке
     // и добавляем тх
@@ -37,12 +84,14 @@ function addRow()
 	var td3 = d.createElement("TD");
 	var td4 = d.createElement("TD");
     var td5 = d.createElement("TD");
+	var td6 = d.createElement("TD");
 
     row.appendChild(td1);
     row.appendChild(td2);
 	row.appendChild(td3);
 	row.appendChild(td4);
 	row.appendChild(td5);
+	row.appendChild(td6);
 
     // Наполняем ячейки
     td1.innerHTML = operation;
@@ -50,10 +99,19 @@ function addRow()
 	td3.innerHTML = item;
 	td4.innerHTML = cost;
 	td5.innerHTML = date;
+	td6.innerHTML = "<button onclick=deleteRow(this);>remove</button>";
 	}
 }
 </script>
 
+<script>
+
+function deleteRow(r)
+{
+var i=r.parentNode.parentNode.rowIndex;
+document.getElementById('dynamic').deleteRow(i);
+}
+</script>
 <form action="" id="add_persons" method="post" onsubmit="addRow(); return false;">
  <div class="text-center">
         <button name="subm" class="submit">Add element</button>
@@ -65,11 +123,12 @@ function addRow()
 			<th scope="col">Theme</th>
             <th scope="col">Item</th>
 			<th scope="col">Cost</th>
-            <th scope="col">Дата операции</th>
+            <th scope="col">Date operation</th>
+			<th scope="col">Remove rows</th>
         </tr>
   </thead>
   <tbody>
-	<tr>
+	<tr onclick="removeRow();">
         <td>
 			<select name="operation" id="operation">
                             <option value="+">+</option>
@@ -88,8 +147,12 @@ function addRow()
 		<td>
             <input type="date" name="date" id="date" value="" size="12"/>
         </td>
+		<td>
+		</td>
 	</tr>
   </tbody>
 </table> 
 </form>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
 </body>
+</html>
