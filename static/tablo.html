@@ -1,7 +1,12 @@
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
 <body>
-<link href="style.css" rel="stylesheet">
+<link href="static/style.css" rel="stylesheet">
 
 <script>
+//–î–æ–±–∞–≤–∏—Ç—å –ø–∞—Ä–∞–º–µ—Ç—Ä—ã —É —Ñ—É–Ω–∫—Ü–∏–∏ –∏ –¥–æ–ø. –ø–∞—Ä–∞–º–µ—Ç—Ä –Ω–∞ –¥–æ–±–∞–≤–ª–µ–Ω–∏–µ –∑–∞–ø–∏—Å–∏ –≤ –±–∞–∑—É
 function addRow()
 {
 	var d = document;
@@ -10,45 +15,49 @@ function addRow()
 	var item;
 	var cost;
 	var date;
-	
-    // ëÁ®‚Î¢†•¨ ß≠†Á•≠®Ô · ‰Æ‡¨Î
-    operation = d.getElementById('operation').value;
-    theme = d.getElementById('theme').value;
-    item = d.getElementById('item').value;
+
+	// –°—á–∏—Ç—ã–≤–∞–µ–º –∑–Ω–∞—á–µ–Ω–∏—è —Å —Ñ–æ—Ä–º—ã
+	operation = d.getElementById('operation').value;
+	theme = d.getElementById('theme').value;
+	item = d.getElementById('item').value;
 	cost = d.getElementById('cost').value;
 	date = d.getElementById('date').value;
 
-    // ç†ÂÆ§®¨ ≠„¶≠„Ó ‚†°´®Ê„
-    var tbody = d.getElementById('dynamic').getElementsByTagName('TBODY')[0];
+	// –ù–∞—Ö–æ–¥–∏–º –Ω—É–∂–Ω—É—é —Ç–∞–±–ª–∏—Ü—É
+	var tbody = d.getElementById('dynamic').getElementsByTagName('TBODY')[0];
 
-    // ëÆß§†•¨ ·‚‡Æ™„ ‚†°´®ÊÎ ® §Æ°†¢´Ô•¨ ••
-    var row = d.createElement("TR");
-    tbody.appendChild(row);
+	// –°–æ–∑–¥–∞–µ–º —Å—Ç—Ä–æ–∫—É —Ç–∞–±–ª–∏—Ü—ã –∏ –¥–æ–±–∞–≤–ª—è–µ–º –µ–µ
+	var row = d.createElement("TR");
+	tbody.appendChild(row);
 
-    // ëÆß§†•¨ ÔÁ•©™® ¢ ¢ÎË•·Æß§†≠≠Æ© ·‚‡Æ™•
-    // ® §Æ°†¢´Ô•¨ ‚Â
-    var td1 = d.createElement("TD");
-    var td2 = d.createElement("TD");
+	// –°–æ–∑–¥–∞–µ–º —è—á–µ–π–∫–∏ –≤ –≤—ã—à–µ—Å–æ–∑–¥–∞–Ω–Ω–æ–π —Å—Ç—Ä–æ–∫–µ
+	// –∏ –¥–æ–±–∞–≤–ª—è–µ–º —Ç—Ö
+	var td1 = d.createElement("TD");
+	var td2 = d.createElement("TD");
 	var td3 = d.createElement("TD");
 	var td4 = d.createElement("TD");
-    var td5 = d.createElement("TD");
+	var td5 = d.createElement("TD");
 
-    row.appendChild(td1);
-    row.appendChild(td2);
+	row.appendChild(td1);
+	row.appendChild(td2);
 	row.appendChild(td3);
 	row.appendChild(td4);
 	row.appendChild(td5);
 
-    // ç†ØÆ´≠Ô•¨ ÔÁ•©™®
-    td1.innerHTML = operation;
-    td2.innerHTML = theme;
+	// –ù–∞–ø–æ–ª–Ω—è–µ–º —è—á–µ–π–∫–∏
+	td1.innerHTML = operation;
+	td2.innerHTML = theme;
 	td3.innerHTML = item;
 	td4.innerHTML = cost;
 	td5.innerHTML = date;
+
+	$.post( "/insert", {op: $("#operation" ).val(), theme: $("#theme" ).val(), item: $("#item" ).val(), cost: $("#cost" ).val(), date: $("#date").val()})
+
 }
 </script>
 
 <form action="" id="add_persons" method="post" onsubmit="addRow();return false;">
+<input type="submit" name="subm" class="submit" value="Add expense" />
 <table id="dynamic" class="dynamic">
   <thead>
         <tr>
@@ -56,36 +65,29 @@ function addRow()
 			<th scope="col">Theme</th>
             <th scope="col">Item</th>
 			<th scope="col">Cost</th>
-            <th scope="col">Ñ†‚† ÆØ•‡†Ê®®</th>
+            <th scope="col">Date</th>
         </tr>
   </thead>
   <tbody>
 	<tr>
         <td>
-            <label for="operation">Opration</label>
-            <input type="text" name="operation" id="operation" value="" size="12" tabindex="1" />
+            <input type="text" name="operation" id="operation" value="" size="5" tabindex="1" />
         </td>
         <td>
-            <label for="theme">Theme</label>
             <input type="text" name="theme" id="theme" value="" size="12" tabindex="2" />
         </td>
         <td>
-            <label for="item">Item</label>
             <input type="text" name="item" id="item" value="" size="12" tabindex="3" />
         </td>
 		<td>
-            <label for="cost">Cost</label>
-            <input type="number" name="cost" id="cost" value="" size="12" tabindex="4" />
+            <input type="number" name="cost" id="cost" value="" size="6" tabindex="4" />
         </td>
 		<td>
-            <label for="date">Date</label>
             <input type="date" name="date" id="date" value="" size="12"/>
         </td>
 	</tr>
   </tbody>
 </table>
-<label for="subm">Ñ•©·‚¢®•</label>
-<input type="submit" name="subm" class="submit" value="ÑÆ°†¢®‚Ï" />  
 </form>
 
 </body>
