@@ -1,5 +1,5 @@
 <body>
-<link href="style.css" rel="stylesheet">
+<link href="tttt.css" rel="stylesheet">
 
 <script>
 function addRow()
@@ -20,13 +20,18 @@ function addRow()
 
     // Находим нужную таблицу
     var tbody = d.getElementById('dynamic').getElementsByTagName('TBODY')[0];
-
+	
     // Создаем строку таблицы и добавляем ее
     var row = d.createElement("TR");
     tbody.appendChild(row);
 
     // Создаем ячейки в вышесозданной строке
     // и добавляем тх
+	if (theme ==  '' || item == '' || cost ==  '' || date == '')
+	{ 
+	alert('Вы ввели не все данные');
+	}
+	else {
     var td1 = d.createElement("TD");
     var td2 = d.createElement("TD");
 	var td3 = d.createElement("TD");
@@ -45,10 +50,14 @@ function addRow()
 	td3.innerHTML = item;
 	td4.innerHTML = cost;
 	td5.innerHTML = date;
+	}
 }
 </script>
 
-<form action="" id="add_persons" method="post" onsubmit="addRow();return false;">
+<form action="" id="add_persons" method="post" onsubmit="addRow(); return false;">
+ <div class="text-center">
+        <button name="subm" class="submit">Add element</button>
+</div>
 <table id="dynamic" class="dynamic">
   <thead>
         <tr>
@@ -62,30 +71,25 @@ function addRow()
   <tbody>
 	<tr>
         <td>
-            <label for="operation">Opration</label>
-            <input type="text" name="operation" id="operation" value="" size="12" tabindex="1" />
+			<select name="operation" id="operation">
+                            <option value="+">+</option>
+                            <option value="-">-</option>
+                        </select>
         </td>
         <td>
-            <label for="theme">Theme</label>
             <input type="text" name="theme" id="theme" value="" size="12" tabindex="2" />
         </td>
         <td>
-            <label for="item">Item</label>
             <input type="text" name="item" id="item" value="" size="12" tabindex="3" />
         </td>
 		<td>
-            <label for="cost">Cost</label>
             <input type="number" name="cost" id="cost" value="" size="12" tabindex="4" />
         </td>
 		<td>
-            <label for="date">Date</label>
             <input type="date" name="date" id="date" value="" size="12"/>
         </td>
 	</tr>
   </tbody>
-</table>
-<label for="subm">Действие</label>
-<input type="submit" name="subm" class="submit" value="Добавить" />  
+</table> 
 </form>
-
 </body>
