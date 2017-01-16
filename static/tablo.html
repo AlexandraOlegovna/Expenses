@@ -260,9 +260,11 @@ function deleteRow(r)
 
 <div id="chartContainer" style="height: 300px; width: 30%;" class="modal hide fade">
 	<script>
-		$( "#show" ).click(function() {
-			diagram();
-		});
+	$(document).ready(function() {
+		$(document).on('click', '#show', function(e) {
+		 diagram();
+		})
+	})
 	</script>
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 </div>
