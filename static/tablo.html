@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<style type="text/css">
+	body {
+	text-align: left;
+
+	}
+	</style>
+    <head>
 	<script type="text/javascript">
-	window.onload = function () {
+	 function diagram () {
      var chart = new CanvasJS.Chart("chartContainer",
      {
           title:{
@@ -15,7 +22,6 @@
           },
           data: [
           {
-
                indexLabelFontSize: 20,
 
                indexLabelFontFamily: "Monospace",
@@ -42,9 +48,24 @@
      chart.render();
 	}
 	</script>
-	<script type="text/javascript" src="static\canvasjs.min.js"></script>
+	<script type="text/javascript" src="static/canvasjs.min.js"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+}
+</script>
+<script type="text/javascript" src="canvasjs.min.js"></script>
+	</head>
+<body>
+<link rel="stylesheet" href="bootstrap.css">
+<link href="tttt.css" rel="stylesheet">
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="static/bootstrap.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		$("document").ready(function(){
+		    $('#chartContainer').click.modal();
+		});
+	</script>
 </head>
 <body>
 <link href="static/tttt.css" rel="stylesheet">
@@ -146,11 +167,13 @@ function deleteRow(r)
 
 </script>
 
-<form action="" id="add_persons" method="post" onsubmit="addRow(true, -1); return false;">
-<div class="text-center">
-        <button name="subm" class="submit">Add element</button>
+<form action="" id="add_persons" method="post" onsubmit="addRow(true); return false;">
+<div class="text-left">
+        <button name="subm" class="btn">Add element</button>
+		<a href="#chartContainer" role="button" class="btn" data-toggle="modal">Show diagram</a>
+
 </div>
-<table id="dynamic" class="dynamic">
+<table id="dynamic" class="dynamic"  style="width= 1300px">
   <thead>
         <tr>
             <th scope="col">Operation</th>
@@ -187,6 +210,10 @@ function deleteRow(r)
   </tbody>
 </table>
 </form>
-<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+<div id="chartContainer" style="height: 300px; width: 30%;" class="modal hide fade">
+	<script> diagram(); </script>
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
 </body>
 </html>
