@@ -1,4 +1,11 @@
 /*Do not forget to describe the styles for:focus!*/
+.main_block{
+    display: flex ;
+    justify-content: space-around;
+
+}
+
+
 :focus {
 outline:0;
 }
@@ -112,4 +119,9 @@ body {
 
 .text-center{
 	margin-left: 13.95%;
+}
+
+
+#show{
+    height: 30px;
 }

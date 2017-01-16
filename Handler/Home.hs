@@ -68,7 +68,7 @@ postSignInR = do
             else
                 return "Error"
 
-postInsertNewR :: Handler Text
+postInsertNewR :: Handler Value
 postInsertNewR = do
     (Just op) <- lookupPostParam "op"
     (Just theme) <- lookupPostParam "theme"
@@ -77,9 +77,35 @@ postInsertNewR = do
     (Just date) <- lookupPostParam "date"
     (Just login) <- lookupCookie "login"
     Just (Entity id_user _) <- runDB $ getBy $ UniqueUser login
-    _ <- runDB $ insert $ Expenses id_user op theme item ((read $ Import.unpack cost) :: Int) date
-    -- runDB $ insert $ Expenses id_user "op" "theme" "item" 228 "date"
+    id_exp <- runDB $ insert $ Expenses id_user op theme item ((read $ Import.unpack cost) :: Int) date
+    returnJson id_exp
+
+
+-- postDeleteRecR :: Handler Text
+-- postDeleteRecR = do
+--     (Just op) <- lookupPostParam "op"
+--     (Just theme) <- lookupPostParam "theme"
+--     (Just item) <- lookupPostParam "item"
+--     (Just cost) <- lookupPostParam "cost"
+--     (Just date) <- lookupPostParam "date"
+--     (Just login) <- lookupCookie "login"
+--     Just (Entity id_user _) <- runDB $ getBy $ UniqueUser login
+--     id_exp <- runDB $ selectFirst [ExpensesUserId ==. id_user, ExpensesOlolo ==. op, ExpensesTheme ==. theme, ExpensesItem ==. item, ExpensesCost ==. (read $ show cost), ExpensesDate ==. date]
+--     runDB $ delete id_exp
+--     return "OK"
+
+postDeleteRecR :: Handler Text
+postDeleteRecR = do
+    (Just id_exp) <- lookupPostParam "id"
+    runDB $ delete $ (toSqlKey (read $ Import.unpack id_exp) :: ExpensesId)
     return "OK"
+
+-- postDeleteRecR :: Handler Value
+-- postDeleteRecR = do
+--     (Just id_exp) <- lookupPostParam "id"
+--     -- runDB $ delete $ (toSqlKey (read $ show id_exp) :: ExpensesId)
+--     -- runDB $ delete $ ((toSqlKey ((read $ show id_exp) :: Int64)) :: ExpensesId)
+--     returnJson $ (read :: (String -> Int64)) $ show id_exp
 
 
 postHomeR :: Handler Html

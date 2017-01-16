@@ -7,5 +7,6 @@
 /signin SignInR POST
 /showexp PostNewR POST
 /insert InsertNewR POST
+/delete DeleteRecR POST
 
 /show ShowExpensesR GET POST
